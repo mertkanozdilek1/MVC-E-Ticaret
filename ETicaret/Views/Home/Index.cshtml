@@ -1,0 +1,44 @@
+﻿@using ETicaret.Models;
+@model IEnumerable<ProductModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="jumbotron" style="background: url(../../Upload/anasayfa.jpg) no-repeat center ">
+    <div class="container">
+        <h1 class="display-3">Merhaba!</h1>
+        <p class="lead">Senin için yüzlerce ürün var keyifli alışverişler.</p>
+        <hr class="my-4">
+
+        <p class="lead">
+
+        </p>
+    </div>
+</div>
+ 
+
+ 
+<div class="container pb-2">
+    @using (Ajax.BeginForm("Search", "Home",
+    new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "searchResults", OnSuccess = "succes" }))
+    {
+        <div class="form-group form-inline"> 
+    
+
+        <input type="text" name="searchKey" class="form-control" placeholder="Ürün Adi" />
+        <button type="submit" value="Ajax Search" class="btn btn-primary ml-2 ">ARA</button>
+    
+</div>     }
+
+</div>
+     
+
+
+
+        <div class="container pb-2">
+            <div id="searchResults">
+                @Html.Partial("_ProductList", Model)
+            </div>
+           
+        </div>
